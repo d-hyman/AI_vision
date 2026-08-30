@@ -1,7 +1,14 @@
 import cv2
 from ultralytics import YOLO
+import socket
 
-CAMERA_INDEX = 0
+#Retreive ESP32 IP address using mDNS
+esp32_ip = socket.gethostbyname("esp32.local")
+
+#CAMERA_INDEX=0 --> default laptop camera; 
+#to connect to esp32 IP Address, and use ESP32 camera 
+#PORT is default to 81. Replace with desired port if different.
+CAMERA_INDEX = f"http://{esp32_ip}:81/stream" 
 MODEL_NAME = "yolov8n.pt"
 CONFIDENCE_THRESHOLD = 0.5
 
